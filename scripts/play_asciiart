@@ -1,5 +1,9 @@
 #!/bin/sh
 
-echo PORT=$1
+PORT=$1
 
-gst-launch-1.0 udpsrc port=$1 ! application/x-rtp, encoding-name=H264, payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! aasink # ascii-art video sink
+ifconfig
+
+echo "$PORT"
+
+gst-launch-1.0 udpsrc port=$PORT ! application/x-rtp, encoding-name=H264, payload=96 ! rtph264depay ! h264parse ! avdec_h264 ! videoconvert ! aasink

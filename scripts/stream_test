@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-echo HOST=$1 PORT=$2
+HOST=$1
+PORT=$2
 
-gst-launch-1.0 videotestsrc ! x264enc ! video/x-h264, stream-format=byte-stream ! rtph264pay ! udpsink host=$1 port=$2
+echo "$HOST $PORT"
+
+gst-launch-1.0 videotestsrc ! x264enc ! h264parse ! rtph264pay ! udpsink host=$HOST port=$PORT

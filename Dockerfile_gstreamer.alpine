@@ -1,0 +1,17 @@
+FROM alpine
+
+RUN apk add --no-cache \
+	gstreamer \
+	gst-plugins-base \
+	gst-plugins-good \
+	gst-plugins-bad \
+	gst-plugins-ugly \
+	gst-libav \
+	gstreamer-tools
+
+#	ncurses
+
+COPY files/ /root/
+
+COPY scripts/ /usr/local/bin/
+RUN chmod a+x /usr/local/bin/*
